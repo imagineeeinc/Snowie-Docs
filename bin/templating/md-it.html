@@ -171,10 +171,18 @@
             var md = data.innerHTML
             var result = rendr.render(md);
             document.getElementById("content").innerHTML = result
-            var list = document.querySelectorAll("h1")
+            var list1 = document.querySelectorAll("h1")
+            var list2 = document.querySelectorAll("h2")
+            var list3 = document.querySelectorAll("h3")
             var links = []
             for (i = 2; i < list.length; i++) {
-                list[i].id = list[i].innerHTML.replaceAll(" ", "-")
+                list1[i].id = list1[i].innerHTML.replaceAll(" ", "-")
+            }
+            for (i = 0; i < list.length; i++) {
+                list2[i].id = list2[i].innerHTML.replaceAll(" ", "-")
+            }
+            for (i = 0; i < list.length; i++) {
+                list3[i].id = list3[i].innerHTML.replaceAll(" ", "-")
             }
         </script>
     </body>

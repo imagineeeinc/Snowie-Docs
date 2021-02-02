@@ -1,0 +1,14 @@
+{
+    "title": "Snowie-Docs-Documentation",
+    "name": "Snowie Docs Documentation",
+    "description": "documanetation for snowie docs",
+    "markdown_engine": "markdown-it",
+    "render_engine": "md",
+    "markup": "md",
+    "out": "./",
+    "in": "documentation.md",
+    "files": "./files",
+    "links": [
+        "Introduction"
+    ]
+}
