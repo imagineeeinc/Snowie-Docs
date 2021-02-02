@@ -1,5 +1,5 @@
 {
-  "name": "Snowie-Docs",
+  "name": "snowie-docs",
   "version": "1.0.0",
   "description": "A one page documentation generator libary",
   "main": "bin/snowie.js",
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "web",
-    "app",
+    "documentation",
     "builder"
   ],
   "author": "imagineee",
