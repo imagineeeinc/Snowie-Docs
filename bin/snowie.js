@@ -28,7 +28,7 @@ var proj_json = {
     out: "output",
     in: "index.md"
 }
-var ver = "1.0.2"
+var ver = "1.0.3"
 
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
@@ -76,6 +76,7 @@ chalk.cyan.bold(`\n
 help:                  output usage information
 ver:                   output MWA Builder Version
 build, bake, b:        builds the appfrom the directroy run and should include a mwa.build.json
+init:                  creates a basic directory with file needed
 \n
 Thanks for using Snowie Docs`));
 }

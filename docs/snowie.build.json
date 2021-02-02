@@ -10,6 +10,7 @@
     "files": "./files",
     "links": [
         "Introduction",
-        "basics"
+        "basics",
+        "cli"
     ]
 }

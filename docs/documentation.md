@@ -3,4 +3,8 @@
 
 # Documentation
 ## basics
-Firstly Snowie is a CLI app so you will use the command `snowie`
+Firstly Snowie is a CLI app so you will use the command `snowie`.
+## cli
+### init
+Running `snowie init <your project name>`, will create a directory with the basics.
+### help
