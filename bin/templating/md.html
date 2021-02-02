@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{Doc Name}}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+        <meta name="theme-color" content="blue"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
+        <link rel='icon' href='Favicon/favicon.ico' type='image/x-icon'>
+
+        <style>
+            body {
+                margin: 0px;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                font-size: 15pt;
+                overflow-x: hidden;
+            }
+            ::-webkit-scrollbar {
+                width: 12px;
+                height: 12px;
+            }
+            ::-webkit-scrollbar-track {
+                background-color: transparent; 
+            }
+            ::-webkit-scrollbar-thumb {
+                background: lightgrey; 
+                border-radius: 5px;
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: #e0e0e0;
+                background: linear-gradient(145deg, #f0f0f0, #cacaca);
+                box-shadow: 0 0 5px lightgrey;
+            }
+            * {
+                transition-duration: .2s;
+                border-radius: 5px;
+                outline: none;
+            }
+            a {
+                color: darkslateblue;
+                background: linear-gradient(white 50%, lightgrey 50%);
+                border-radius: 0;
+            }
+            #menu {
+                text-align: center;
+                font-size: 40px;
+                position: sticky;
+                top: 0;
+                z-index: 3;
+                float: right;
+                text-decoration: none;
+                cursor: zoom-in;
+                color: black;
+                background-color: lightgrey;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+            }
+            #menu:hover {
+                background-color: grey;
+            }
+            #menu:active {
+                background-color: grey;
+            }
+            p {
+                z-index: 1;
+                border-radius: 5px;
+                padding: 5px;
+                margin: 20px 5px 20px 5px;
+            }
+            p:hover {
+                box-shadow: 0 0 10px lightgrey;
+            }
+            p:active {
+                box-shadow: 0 0 10px lightgrey;
+            }
+            #index {
+                float: left;
+                position: fixed;
+                height: 100%;
+                width: 300px;
+                background-color: rgb(210, 210, 210);
+                z-index: 2;
+                top: 0;
+                padding: 20px;
+                overflow-y:scroll;
+                border-radius: 0;
+                font-size: 10pt;
+            }
+            #body {
+                position: absolute;
+                left: 341px;
+                overflow-x: hidden;
+                padding: 10;
+            }
+            #index:hover {
+                box-shadow: 0 0 10px lightgrey;
+            }
+            #index > ul > li {
+                list-style: none;
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            #index > ul > li > a {
+                color: darkslateblue;
+                background: linear-gradient(white 50%, lightgrey 50%);
+            }
+            h1 {
+                font-size: 30px
+            }
+            @media only screen and (min-width: 680px) {
+                #body {
+                    position: absolute;
+                    left: 341px;
+                }
+                #menu {
+                    visibility: hidden;
+                }
+            }
+            @media only screen and (max-width: 679px) {
+                /*#index {
+                    display: none;
+                }*/
+                #body {
+                    position: absolute;
+                    left: 0px;
+                    width: 100%;
+                }
+                .hmenu {
+                    display: none
+                }
+            }
+            #menu-list {
+                margin-left: -30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="index" class="hmenu">
+            <h1>{{Doc Name}}</h1>
+            <ul id="menu-list">
+            </ul>      
+        </div>
+        <img id="menu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNyA1aDE0djJIN3oiLz48Y2lyY2xlIGN4PSI0IiBjeT0iNiIgcj0iMS41Ii8+PHBhdGggZD0iTTcgMTFoMTR2Mkg3em0wIDZoMTR2Mkg3em0tMyAyLjVjLjgyIDAgMS41LS42OCAxLjUtMS41cy0uNjctMS41LTEuNS0xLjUtMS41LjY4LTEuNSAxLjUuNjggMS41IDEuNSAxLjV6Ii8+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIxLjUiLz48L3N2Zz4=">
+        <div id="body">
+            <h1 id="head" style="text-align: center;">{{Doc Name}}</h1>
+            {{content}}
+        </div>
+        <div style="display: none;" id="data"></div>
+        <script>
+            setInterval(function() {
+                if (window.innerWidth > 679) {
+                    document.getElementById("body").style.width = window.innerWidth - 370 + "px"
+                } else {
+                    document.getElementById("body").style.width = window.innerWidth + "px"
+                }
+            }, 1)
+            document.getElementById("menu").onclick = function() {
+                if (document.getElementById("index").className == "hmenu") {
+                    document.getElementById("index").className = "smenu";
+                } else if (document.getElementById("index").className == "smenu") {
+                    document.getElementById("index").className = "hmenu";
+                }
+            }
+            var md = data.value
+        </script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+{
+    "title": "Basic-Snowie-Docs",
+    "name": "Basic Snowie Docs",
+    "description": "a basic snowie doc template",
+    "markdown_engine": "markdown-it",
+    "render_engine": "md",
+    "markup": "md",
+    "out": "output",
+    "in": "index.md",
+    "links": [
+        "Basic-Snowie-Markdown-file"
+    ]
+}
