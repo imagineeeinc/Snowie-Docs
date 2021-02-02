@@ -28,7 +28,7 @@ var proj_json = {
     out: "output",
     in: "index.md"
 }
-var ver = "1.0.0"
+var ver = "1.0.1"
 
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
