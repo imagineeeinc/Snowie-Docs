@@ -11,6 +11,8 @@
     "links": [
         "Introduction",
         "basics",
-        "cli"
+        "cli",
+        "Build-Config",
+        "options"
     ]
 }

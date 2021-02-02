@@ -138,7 +138,7 @@
         <div id="index" class="hmenu">
             <h1 id="list-head">Snowie Docs Documentation</h1>
             <ul id="menu-list">
-            <li><a href="#Introduction">Introduction</a></li><li><a href="#basics">basics</a></li><li><a href="#init">init</a></li></ul>      
+            <li><a href="#Introduction">Introduction</a></li><li><a href="#basics">basics</a></li><li><a href="#cli">cli</a></li><li><a href="#Build-Config">Build-Config</a></li><li><a href="#options">options</a></li></ul>      
         </div>
         <img id="menu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNyA1aDE0djJIN3oiLz48Y2lyY2xlIGN4PSI0IiBjeT0iNiIgcj0iMS41Ii8+PHBhdGggZD0iTTcgMTFoMTR2Mkg3em0wIDZoMTR2Mkg3em0tMyAyLjVjLjgyIDAgMS41LS42OCAxLjUtMS41cy0uNjctMS41LTEuNS0xLjUtMS41LjY4LTEuNSAxLjUuNjggMS41IDEuNSAxLjV6Ii8+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIxLjUiLz48L3N2Zz4=">
         <div id="body">
@@ -153,8 +153,43 @@
 # Documentation
 ## basics
 Firstly Snowie is a CLI app so you will use the command `snowie`.
-## init
-Running `snowie init <your project="" name="">`, will create a directory with the basics</your></div>
+## cli
+### init
+Running `snowie init <your project="" name="">`, will create a directory with the basics.
+### help
+Running `snowie help`, returns commands
+### ver
+Running `snowie ver`, returns current version
+### build
+Running `snowie build`, `snowie bake` or `snowie b`, will build the html for you to your output directory
+## Build Config
+To start of you need a `snowie.build.json` in it this the below will be your basic setup
+```
+{
+    "title": "Basic-Snowie-Docs",
+    "name": "Basic Snowie Docs",
+    "description": "a basic snowie doc template",
+    "markdown_engine": "markdown-it",
+    "render_engine": "md",
+    "markup": "md",
+    "out": "output",
+    "in": "index.md",
+    "files": "./files",
+    "links": [
+        "Basic-Snowie-Markdown-file"
+    ]
+}
+```
+### options
+#### title
+`type=string`
+the title of the project
+#### name
+`type=string`
+the title for the output file
+#### description
+`type=string`
+the description of the project</your></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.4/markdown-it.min.js"></script>
         <script defer="">
             setInterval(function() {
