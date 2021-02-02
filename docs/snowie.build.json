@@ -9,6 +9,7 @@
     "in": "documentation.md",
     "files": "./files",
     "links": [
-        "Introduction"
+        "Introduction",
+        "basics"
     ]
 }
