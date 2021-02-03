@@ -28,7 +28,7 @@ var proj_json = {
     out: "output",
     in: "index.md"
 }
-var ver = "1.0.4"
+var ver = "1.0.5"
 
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
@@ -159,10 +159,12 @@ function build(config, dir) {
             if (config.render_engine === "md") {
                 var text
                 mdEngine()
+                const replacer = new RegExp("`", 'g')
+                text = text.replace(replacer, "\\`")
+                dom.window.document.getElementById("md").innerHTML = "var md = `" + text + "`"
             }
         }
         console.log(chalk.green("Finished Compiling..."))
-        dom.window.document.getElementById("data").innerHTML = text
         dom.window.document.getElementById("head").innerHTML = config.name
         dom.window.document.getElementById("list-head").innerHTML = config.name
         dom.window.document.querySelector("title").innerHTML = config.name

@@ -156,7 +156,9 @@
             </div>
             
         </div>
-        <div style="display: none;" id="data"></div>
+        <script id="md">
+            var md
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.4/markdown-it.min.js"></script>
         <script defer>
             setInterval(function() {
@@ -175,7 +177,6 @@
             }
             const data = document.getElementById("data")
             var rendr = window.markdownit();
-            var md = data.innerHTML
             var result = rendr.render(md);
             document.getElementById("content").innerHTML = result
             var list1 = document.querySelectorAll("h1")
