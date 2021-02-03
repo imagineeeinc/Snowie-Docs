@@ -6,6 +6,7 @@
     "render_engine": "md",
     "markup": "md",
     "out": "output",
+    "out_name": "index",
     "in": "index.md",
     "files": "./files",
     "links": [

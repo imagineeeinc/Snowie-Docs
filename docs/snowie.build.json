@@ -7,9 +7,10 @@
     "markup": "md",
     "out": "./",
     "in": "documentation.md",
-    "files": "./files",
     "links": [
         "Introduction",
+        "Install",
+        "Documentation",
         "basics",
         "cli",
         "Build-Config",

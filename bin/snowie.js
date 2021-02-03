@@ -28,7 +28,7 @@ var proj_json = {
     out: "output",
     in: "index.md"
 }
-var ver = "1.0.5"
+var ver = "1.0.6"
 
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
@@ -173,9 +173,25 @@ function build(config, dir) {
             doc.innerHTML = "<a href='#" + config.links[i] + "'>" + config.links[i] + "</a>"
             dom.window.document.getElementById("menu-list").append(doc)
         }
-        fs.writeFile(dir + "/" + config.out + "/index.html", dom.window.document.querySelector( 'html' ).outerHTML, function (err) {
+        var file_name
+        if (config.out_name) {
+            file_name = config.out_name;
+        } else {
+            file_name = "index"
+        }
+        fs.writeFile(dir + "/" + config.out + "/" + file_name + ".html", dom.window.document.querySelector( 'html' ).outerHTML, function (err) {
             if (err) return console.log(err);
         });
+        if (config.files) {
+            console.log(path.join(dir + "/" + config.files))
+            fse.copySync(path.join(dir + "/" + config.files), output_dir + "/" + config.files, { overwrite: true }, function (err) {
+                if (err) {
+                    console.log(chalk.red(err))
+                } else {
+                    //console.log(chalk.green.bold("Done Setup!"))
+                }
+            });
+        }
         console.log(chalk.green("Wrote to html file at: " + dir + "\\" + config.out + "\\index.html"))
         console.log(chalk.greenBright.bold("Finished compiling to Single file with these configurations:\n") +
             chalk.blue.bold(JSON.stringify(config)) +
@@ -209,6 +225,10 @@ function build(config, dir) {
             } catch(e) {
                     console.log(chalk.red.bold('Error:', e.stack));
             }
+        } else {
+            console.log(chalk.red.bold("You do not have a markdown_engine set up,\n\nto set up put: \n") + 
+            chalk.blue.bold("{\n  ...\n    \"markdown_engine\": \"<preferd markup engine, options: markdown-it, showdown>\"\n   ...\n}") +
+            chalk.red.bold("\nto learn more go to <docs link>"))
         }
     }
 }

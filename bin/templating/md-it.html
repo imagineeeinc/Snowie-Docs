@@ -69,12 +69,6 @@
                 padding: 5px;
                 margin: 20px 5px 20px 5px;
             }
-            p:hover {
-                box-shadow: 0 0 10px lightgrey;
-            }
-            p:active {
-                box-shadow: 0 0 10px lightgrey;
-            }
             #index {
                 float: left;
                 position: fixed;
@@ -103,7 +97,7 @@
                 margin-bottom: 10px;
             }
             #index > ul > li > a {
-                color: darkslateblue;
+                color: blue;
                 background: linear-gradient(lightgrey 50%, white 50%);
             }
             h1 {
@@ -140,8 +134,29 @@
                 -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
                 border: 1px solid lightgrey;
                 padding: 5px;
+                background-color: rgb(240, 240, 240);
+            }
+            pre > code {
+                border: 0px solid transparent  !important;
+                padding: 0  !important;
+                background-color: transparent !important;
+            }
+            code {
+                border: 1px solid lightgrey;
+                padding: 1px;
+                background-color: rgb(240, 240, 240);
+            }
+            img {
+                width: 80%;
+                padding: 10px;
+                box-shadow: 5px 5px 8px lightgrey;
+                border: 0.25px solid rgb(240, 240, 240);
+                border-radius: 0;
+                padding-bottom: 40px;
             }
         </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     </head>
     <body>
         <div id="index" class="hmenu">
@@ -192,6 +207,9 @@
             for (i = 0; i < list3.length; i++) {
                 list3[i].id = list3[i].innerHTML.replaceAll(" ", "-")
             }
+            setTimeout(function() {
+                hljs.initHighlightingOnLoad();
+            }, 1000)
         </script>
     </body>
 </html>
