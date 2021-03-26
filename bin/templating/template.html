@@ -11,7 +11,7 @@
 
         <style>
             body {
-                margin: 0px;
+                margin: 0px 5px 0px 0px;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
                 font-size: 15pt;
                 overflow-x: hidden;
@@ -21,7 +21,7 @@
                 height: 12px;
             }
             ::-webkit-scrollbar-track {
-                background-color: transparent; 
+                background-color: rgba(0, 0, 0, 0); 
             }
             ::-webkit-scrollbar-thumb {
                 background: lightgrey; 
@@ -160,14 +160,13 @@
     </head>
     <body>
         <div id="index" class="hmenu">
-            <h1>{{Doc Name}}</h1>
+            <h1 id="list-head">{{Doc Name}}</h1>
             <ul id="menu-list">
             </ul>      
         </div>
         <img id="menu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNyA1aDE0djJIN3oiLz48Y2lyY2xlIGN4PSI0IiBjeT0iNiIgcj0iMS41Ii8+PHBhdGggZD0iTTcgMTFoMTR2Mkg3em0wIDZoMTR2Mkg3em0tMyAyLjVjLjgyIDAgMS41LS42OCAxLjUtMS41cy0uNjctMS41LTEuNS0xLjUtMS41LjY4LTEuNSAxLjUuNjggMS41IDEuNSAxLjV6Ii8+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIxLjUiLz48L3N2Zz4=">
         <div id="body">
             <h1 id="head" style="text-align: center;">{{Doc Name}}</h1>
-            {{content}}
         </div>
         <script>
             setInterval(function() {
@@ -184,14 +183,27 @@
                     document.getElementById("index").className = "hmenu";
                 }
             }
+            var list1 = document.querySelectorAll("h1")
+            var list2 = document.querySelectorAll("h2")
+            var list3 = document.querySelectorAll("h3")
+            var links = []
             for (i = 2; i < list1.length; i++) {
                 list1[i].id = list1[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list1[i].id + "'><b>" + list1[i].innerHTML + "</b></a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list2.length; i++) {
                 list2[i].id = list2[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list2[i].id + "'>" + list2[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list3.length; i++) {
                 list3[i].id = list3[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list3[i].id + "'>" + list3[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             setTimeout(function() {
                 hljs.initHighlightingOnLoad();

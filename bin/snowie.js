@@ -2,8 +2,8 @@
 
 /*
 markdown_engines: markdown-it, showdownjs
-render_engine: creamy, html, md
-markup: md, creamy, html
+render_engine: html, md
+markup: md, html
 */
 const chalk = require('chalk');
 const yargs = require("yargs");
@@ -12,11 +12,13 @@ var path = require('path');
 const fs = require('fs');
 const fse = require('fs-extra');
 var showdown  = require('showdown')
-var converter = new showdown.Converter()
+var sdmd = new showdown.Converter()
+var MarkdownIt = require('markdown-it'),
+    mdit = new MarkdownIt();
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 //text      = '# hello, markdown!',
-//html      = converter.makeHtml(text);
+//html      = sdmd.makeHtml(text);
 
 var proj_name
 var proj_json = {
@@ -28,7 +30,7 @@ var proj_json = {
     out: "output",
     in: "index.md"
 }
-var ver = "1.0.6"
+var ver = "1.0.7"
 
 const download = (url, path, callback) => {
     request.head(url, (err, res, body) => {
@@ -68,7 +70,7 @@ function help() {
     console.log(chalk.cyan.bold(`
 Snowie Docs is a tool to turn your documentation into a single html file which you can host or even customize
 \nfor documentation on how to use it go to `) + 
-chalk.bold.blueBright(`https://github.com/imagineeeinc/Snowie-Docs/#documentation`) + 
+chalk.bold.blueBright(`https://imagineeeinc.github.io/Snowie-Docs/`) + 
 `
 \n` + 
 chalk.bgBlue.yellow.bold("snowie [options]=<inputs>") + 
@@ -108,7 +110,7 @@ function startbuild() {
           var on = get_from_json(path.join(process.cwd() + "/snowie.build.json"))
           build(on, process.cwd())
         } else {
-            console.log(chalk.red("Build configration file does not existis?\ngo to: <docs link> to learn more"))
+            console.log(chalk.red("Build configration file does not existis?\ngo to: https://imagineeeinc.github.io/Snowie-Docs/#Build-Config to learn more"))
         }
     } catch(err) {
         console.error(err)
@@ -138,7 +140,7 @@ function build(config, dir) {
     if (!config.out) {
         console.log(chalk.red.bold("You do not have a out directory set up,\n\nto set up put: \n") + 
         chalk.blue.bold("{\n  ...\n    \"out\": \"<out directory name>\"\n   ...\n}") +
-        chalk.red.bold("\nto learn more go to <docs link>"))
+        chalk.red.bold("\nto learn more go to https://imagineeeinc.github.io/Snowie-Docs/#options"))
     } else {
         if (!fs.existsSync(path.join(dir + "/" + config.out))){
             fs.mkdirSync(dir + "/" + config.out);
@@ -152,8 +154,8 @@ function build(config, dir) {
     var dom
     if (!config.markup) {
         console.log(chalk.red.bold("You do not have a markup languge set up,\n\nto set up put: \n") + 
-        chalk.blue.bold("{\n  ...\n    \"markup\": \"<preferd markup lang, options: md, html, creamy>\"\n   ...\n}") +
-        chalk.red.bold("\nto learn more go to <docs link>"))
+        chalk.blue.bold("{\n  ...\n    \"markup\": \"<preferd markup lang, options: md, html>\"\n   ...\n}") +
+        chalk.red.bold("\nto learn more go to https://imagineeeinc.github.io/Snowie-Docs/#Markup"))
     } else {
         if (config.markup === "md") {
             if (config.render_engine === "md") {
@@ -162,17 +164,29 @@ function build(config, dir) {
                 const replacer = new RegExp("`", 'g')
                 text = text.replace(replacer, "\\`")
                 dom.window.document.getElementById("md").innerHTML = "var md = `" + text + "`"
+            } else if (config.render_engine === "html") {
+                var text
+                htmlEngine()
+                const replacer = new RegExp("`", 'g')
+                text = text.replace(replacer, "\\`")
+                let doc = dom.window.document.createElement("div")
+                doc.innerHTML = text
+                dom.window.document.getElementById("body").append(doc)
+            } else {
+                console.log(chalk.red.bold("You do not have a render engine set up,\n\nto set up put: \n") + 
+                chalk.blue.bold("{\n  ...\n    \"render_engine\": \"<preferd render engine, options: md, html>\"\n   ...\n}") +
+                chalk.red.bold("\nto learn more go to https://imagineeeinc.github.io/Snowie-Docs/#Render-engine"))
             }
         }
         console.log(chalk.green("Finished Compiling..."))
         dom.window.document.getElementById("head").innerHTML = config.name
         dom.window.document.getElementById("list-head").innerHTML = config.name
         dom.window.document.querySelector("title").innerHTML = config.name
-        for (i = 0; i < config.links.length; i++) {
+        /*for (i = 0; i < config.links.length; i++) {
             var doc = dom.window.document.createElement("li")
-            doc.innerHTML = "<a href='#" + config.links[i] + "'>" + config.links[i] + "</a>"
+            doc.innerHTML = "<a href='" + config.links[i].href + "'>" + config.links[i].name + "</a>"
             dom.window.document.getElementById("menu-list").append(doc)
-        }
+        }*/
         var file_name
         if (config.out_name) {
             file_name = config.out_name;
@@ -228,7 +242,33 @@ function build(config, dir) {
         } else {
             console.log(chalk.red.bold("You do not have a markdown_engine set up,\n\nto set up put: \n") + 
             chalk.blue.bold("{\n  ...\n    \"markdown_engine\": \"<preferd markup engine, options: markdown-it, showdown>\"\n   ...\n}") +
-            chalk.red.bold("\nto learn more go to <docs link>"))
+            chalk.red.bold("\nto learn more go to https://imagineeeinc.github.io/Snowie-Docs/#Markdown-engine"))
+        }
+    }
+    function htmlEngine() {
+        try {
+            var data = fs.readFileSync(dir + "/" + "\\" + config.in, 'utf8');
+            text = data
+        } catch(e) {
+            console.log(chalk.red.bold('Error:', e.stack));
+        }
+        var obj
+        if (config.markdown_engine === "markdown-it") {
+            text = mdit.render(text)
+        } else if (config.markdown_engine === "showdown") {
+            text = sdmd.makeHtml(text)
+        } else {
+            console.log(chalk.red.bold("You do not have a markdown_engine set up,\n\nto set up put: \n") + 
+            chalk.blue.bold("{\n  ...\n    \"markdown_engine\": \"<preferd markup engine, options: markdown-it, showdown>\"\n   ...\n}") +
+            chalk.red.bold("\nto learn more go to https://imagineeeinc.github.io/Snowie-Docs/#Markdown-engine"))
+        }
+        try {
+            var data = fs.readFileSync(__dirname + "\\templating\\template.html", 'utf8');
+            obj = data
+            //console.log(chalk.green(obj)); 
+            dom = new JSDOM(obj);
+        } catch(e) {
+            console.log(chalk.red.bold('Error:', e.stack));
         }
     }
 }

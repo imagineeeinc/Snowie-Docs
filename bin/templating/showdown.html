@@ -11,7 +11,7 @@
 
         <style>
             body {
-                margin: 0px;
+                margin: 0px 5px 0px 0px;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
                 font-size: 15pt;
                 overflow-x: hidden;
@@ -21,7 +21,7 @@
                 height: 12px;
             }
             ::-webkit-scrollbar-track {
-                background-color: transparent; 
+                background-color: rgba(0, 0, 0, 0); 
             }
             ::-webkit-scrollbar-thumb {
                 background: lightgrey; 
@@ -200,12 +200,21 @@
             var links = []
             for (i = 2; i < list1.length; i++) {
                 list1[i].id = list1[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list1[i].id + "'><b>" + list1[i].innerHTML + "</b></a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list2.length; i++) {
                 list2[i].id = list2[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list2[i].id + "'>" + list2[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list3.length; i++) {
                 list3[i].id = list3[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list3[i].id + "'>" + list3[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             setTimeout(function() {
                 hljs.initHighlightingOnLoad();

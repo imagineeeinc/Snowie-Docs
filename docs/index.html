@@ -9,7 +9,7 @@
 
         <style>
             body {
-                margin: 0px;
+                margin: 0px 5px 0px 0px;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
                 font-size: 15pt;
                 overflow-x: hidden;
@@ -19,7 +19,7 @@
                 height: 12px;
             }
             ::-webkit-scrollbar-track {
-                background-color: transparent; 
+                background-color: rgba(0, 0, 0, 0); 
             }
             ::-webkit-scrollbar-thumb {
                 background: lightgrey; 
@@ -160,42 +160,31 @@
         <div id="index" class="hmenu">
             <h1 id="list-head">Snowie Docs Documentation</h1>
             <ul id="menu-list">
-            <li><a href="#Introduction">Introduction</a></li><li><a href="#Install">Install</a></li><li><a href="#Documentation">Documentation</a></li><li><a href="#basics">basics</a></li><li><a href="#cli">cli</a></li><li><a href="#Build-Config">Build-Config</a></li><li><a href="#options">options</a></li></ul>      
+            </ul>      
         </div>
         <img id="menu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDBWMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNyA1aDE0djJIN3oiLz48Y2lyY2xlIGN4PSI0IiBjeT0iNiIgcj0iMS41Ii8+PHBhdGggZD0iTTcgMTFoMTR2Mkg3em0wIDZoMTR2Mkg3em0tMyAyLjVjLjgyIDAgMS41LS42OCAxLjUtMS41cy0uNjctMS41LTEuNS0xLjUtMS41LjY4LTEuNSAxLjUuNjggMS41IDEuNSAxLjV6Ii8+PGNpcmNsZSBjeD0iNCIgY3k9IjEyIiByPSIxLjUiLz48L3N2Zz4=">
         <div id="body">
             <h1 id="head" style="text-align: center;">Snowie Docs Documentation</h1>
-            <div id="content">
-            </div>
-            
-        </div>
-        <script id="md">var md = `# Introduction
-**Snowie** Docs is a tool to generate single page html files from your documentation. It is **light weight** easy to use CLI app. It generates a single html, with no js or css files attached which you can edit and you can host anywhere, like Github Pages.
-
-# Install
-#### Npm:
-run
-\`\`\`
-npm i -g snowie-docs
-\`\`\`
-to install
-
-# Documentation
-## basics
-Firstly Snowie is a CLI app so you will use the command \`snowie\`.
-## cli
-### init
-Running \`snowie init <your project name>\`, will create a directory with the basics.
-### help
-Running \`snowie help\`, returns commands
-### ver
-Running \`snowie ver\`, returns current version
-### build
-Running \`snowie build\`, \`snowie bake\` or \`snowie b\`, will build the html for you to your output directory
-## Build Config
-To start of you need a \`snowie.build.json\` in it this the below will be your basic setup
-\`\`\`json
-{
+        <div><h1>Introduction</h1>
+<p><strong>Snowie</strong> Docs is a tool to generate single page html files from your documentation. It is <strong>light weight</strong> easy to use CLI app. It generates a single html, with no js or css files attached which you can edit and you can host anywhere, like Github Pages.</p>
+<h1>Install</h1>
+<h4>Npm:</h4>
+<p>run <code>npm i -g snowie-docs</code> to install</p>
+<h1>Documentation</h1>
+<h2>basics</h2>
+<p>Firstly Snowie is a CLI app so you will use the command <code>snowie</code>.</p>
+<h2>cli</h2>
+<h3>init</h3>
+<p>Running <code>snowie init &lt;your project name&gt;</code>, will create a directory with the basics.</p>
+<h3>help</h3>
+<p>Running <code>snowie help</code>, returns commands</p>
+<h3>ver</h3>
+<p>Running <code>snowie ver</code>, returns current version</p>
+<h3>build</h3>
+<p>Running <code>snowie build</code>, <code>snowie bake</code> or <code>snowie b</code>, will build the html for you to your output directory</p>
+<h2>Build Config</h2>
+<p>To start of you need a <code>snowie.build.json</code> in it this the below will be your basic setup</p>
+<pre><code class="language-json">{
     "title": "Basic-Snowie-Docs",
     "name": "Basic Snowie Docs",
     "description": "a basic snowie doc template",
@@ -210,33 +199,50 @@ To start of you need a \`snowie.build.json\` in it this the below will be your b
         "Basic-Snowie-Markdown-file"
     ]
 }
-\`\`\`
-### options
-- **title**: \[\`type=string\`] the title of the project
-- **name**: \[\`type=string\`] the title for the output file.
-- **description**: \[\`type=string\`] the description of the project
-- **markdown_engine**: \[\`type=string\`]**Options:** *_[markdown-it](https://github.com/markdown-it/markdown-it) | [showdown](https://github.com/showdownjs/showdown)_*: the compiler that will be used to compile the markdown, choose the one that suits your need, [Read More](#Markdown-engine)
-- **render_engine**: \[\`type="string\`]**Options:** *_md | html | creamy_*: the render type that will be use when you load the page, [Read More](#Render-engine)
-- **markup**: \[\`type: string\`]**Options:** *_md | html | creamy_*: the markup language you will use to write this documentation, [Read More](#Markup)
-- **out**: \[\`type="string"\`] the output folder
-- **in**: \[\`type="string"\`] the input markup file
-- **out_name**: \[\`type="string"\`] the output file name
-- **files**: \[\`type="string"\`] the location of the files that will be bundled with the page, a folder in which for example your images will stay in, [Read More](#Files)
-- **links**: \[\`type="array"\`] a array of links within the page, [Read More](#links)
-
-### Render-engine
-The render engine is how the page will be rendered.
-
-md will give a markdown file to the page which will be compiled the html using the [\`markdown_engine\`](#Markdown-engine) of your choice and then put on to the page, so it will take some time to compile once the page is loaded.
-
-html will compile the input markup to html and paste it onto the page which will be loaded once the page will be opened, it is more faster but complicated   and long documentation will take time to load for the user specially on slow systems.
-
-Creamy will give a creamy file to the page which will be compiled the html using the [\`Creamy JS\`](https://github.com/imagineeeinc/Creamy-JS) and then put on to the page, so it will take some time to compile once the page is loaded.
-
-### Markdown engine
-The markdown engine gives the choice of features you want when you compile your markdown and when using the the markdown. The first, also recommended, is [markdown-it](https://github.com/markdown-it/markdown-it) which uses the [CommonMark Spec](http://spec.commonmark.org/), and then the [showdown](https://github.com/showdownjs/showdown) is used in many places,seen [here](https://github.com/showdownjs/showdown#who-uses-showdown-or-a-fork), so its your choice which to use, but you have to define it if you want to use markdown in the [\`render_engine\`](#Render-engine). and the Markup`</script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/12.0.4/markdown-it.min.js"></script>
-        <script defer="">
+</code></pre>
+<h3>options</h3>
+<ul>
+<li><strong>title</strong>: [<code>type=string</code>] the title of the project</li>
+<li><strong>name</strong>: [<code>type=string</code>] the title for the output file.</li>
+<li><strong>description</strong>: [<code>type=string(optional)</code>] the description of the project</li>
+<li><strong>markdown_engine</strong>: [<code>type=string(optional)</code>]<strong>Options:</strong> <em><em><a href="https://github.com/markdown-it/markdown-it">markdown-it</a> | <a href="https://github.com/showdownjs/showdown">showdown</a></em></em>: the compiler that will be used to compile the markdown, choose the one that suits your need, <a href="#Markdown-engine">Read More</a></li>
+<li><strong>render_engine</strong>: [<code>type="string</code>]<strong>Options:</strong> <em><em>md | html</em></em>: the render type that will be use when you load the page, <a href="#Render-engine">Read More</a></li>
+<li><strong>markup</strong>: [<code>type: string</code>]<strong>Options:</strong> <em><em>md | html</em></em>: the markup language you will use to write this documentation, <a href="#Markup">Read More</a></li>
+<li><strong>out</strong>: [<code>type="string"</code>] the output folder</li>
+<li><strong>in</strong>: [<code>type="string"</code>] the input markup file</li>
+<li><strong>out_name</strong>: [<code>type="string"(optional)</code>] the output file name</li>
+<li><strong>files</strong>: [<code>type="string"(optional)</code>] the location of the files that will be bundled with the page, a folder in which for example your images will stay in, <a href="#Files">Read More</a></li>
+<li><strong>links</strong>: [<code>type="array"</code>] a array of links within the page, <a href="#Links">Read More</a></li>
+<li><strong>snowie-engine</strong>: [<code>type="string"(optional)</code>] snowie docs compiler option</li>
+</ul>
+<h3>Render-engine</h3>
+<p>The render engine is how the page will be rendered.</p>
+<p>md will give a markdown file to the page which will be compiled the html using the <a href="#Markdown-engine"><code>markdown_engine</code></a> of your choice and then put on to the page, so it will take some time to compile once the page is loaded.</p>
+<p>html will compile the input markup to html and paste it onto the page which will be loaded once the page will be opened, it is more faster but complicated   and long documentation will take time to load for the user specially on slow systems.</p>
+<h3>Markdown engine</h3>
+<p>The markdown engine gives the choice of features you want when you compile your markdown and when using the the markdown. The first, also recommended, is <a href="https://github.com/markdown-it/markdown-it">markdown-it</a> which uses the <a href="http://spec.commonmark.org/">CommonMark Spec</a>, and then the <a href="https://github.com/showdownjs/showdown">showdown</a> is used in many places,seen <a href="https://github.com/showdownjs/showdown#who-uses-showdown-or-a-fork">here</a>, so its your choice which to use, but you have to define it if you want to use markdown in the <a href="#Render-engine"><code>render_engine</code></a>. and the Markup</p>
+<h3>Links</h3>
+<p>Links are the links that appear on the side of the page.
+for them to link to contents on the page.</p>
+<p><strong>setup</strong></p>
+<pre><code>{
+	"href": "&lt;the link on the page&gt;",
+	"name": "&lt;the name for the link&gt;"
+}
+</code></pre>
+<p><strong>example:</strong></p>
+<pre><code>{
+	...
+	"links":
+	{
+		"href": "example",
+		"name": "example link name that will show up in the side bar"
+	}
+	...
+}
+</code></pre>
+</div></div>
+        <script>
             setInterval(function() {
                 if (window.innerWidth > 679) {
                     document.getElementById("body").style.width = window.innerWidth - 370 + "px"
@@ -251,22 +257,27 @@ The markdown engine gives the choice of features you want when you compile your 
                     document.getElementById("index").className = "hmenu";
                 }
             }
-            const data = document.getElementById("data")
-            var rendr = window.markdownit();
-            var result = rendr.render(md);
-            document.getElementById("content").innerHTML = result
             var list1 = document.querySelectorAll("h1")
             var list2 = document.querySelectorAll("h2")
             var list3 = document.querySelectorAll("h3")
             var links = []
             for (i = 2; i < list1.length; i++) {
                 list1[i].id = list1[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list1[i].id + "'><b>" + list1[i].innerHTML + "</b></a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list2.length; i++) {
                 list2[i].id = list2[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list2[i].id + "'>" + list2[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             for (i = 0; i < list3.length; i++) {
                 list3[i].id = list3[i].innerHTML.replaceAll(" ", "-")
+                var doc = document.createElement("li")
+                doc.innerHTML = "<a href='#" + list3[i].id + "'>" + list3[i].innerHTML + "</a>"
+                document.getElementById("menu-list").append(doc)
             }
             setTimeout(function() {
                 hljs.initHighlightingOnLoad();

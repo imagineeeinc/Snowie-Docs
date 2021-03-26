@@ -3,17 +3,38 @@
     "name": "Snowie Docs Documentation",
     "description": "documanetation for snowie docs",
     "markdown_engine": "markdown-it",
-    "render_engine": "md",
+    "render_engine": "html",
     "markup": "md",
     "out": "./",
     "in": "documentation.md",
     "links": [
-        "Introduction",
-        "Install",
-        "Documentation",
-        "basics",
-        "cli",
-        "Build-Config",
-        "options"
+        {
+            "href": "#Introduction",
+            "name": "<b>Introduction</b>"
+        },
+        {
+            "href": "Install",
+            "name": "Installing"
+        },
+        {
+            "href": "Documentation",
+            "name": "Main Documentation"
+        },
+        {
+            "href": "basics",
+            "name": "Basics"
+        },
+        {
+            "href": "cli",
+            "name": "CLI"
+        },
+        {
+            "href": "Build-Config",
+            "name": "<b>Build Config<b>"
+        },
+        {
+            "href": "options",
+            "name": "Options"
+        }
     ]
 }
